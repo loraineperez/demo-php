@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -20,29 +20,5 @@ jobs:
         echo "$KAT_EC2_SSH_PRIVATE_KEY" > kat.pem
         chmod 600 kat.pem
         ssh-keyscan 44.203.64.5 >> ~/.ssh/known_hosts
-    - name: rsync deployments
-      uses: burnett01/rsync-deployments@5.1
-      with:
-        switches: -avzr --delete
-        path: ./*
-        remote_path: /var/www/html/
-        remote_host: 44.203.64.5
-        remote_user: ubuntu
-        remote_key: "${{ secrets.KAT_EC2_SSH_PRIVATE_KEY }}"        
-    # - name: Deploy to EC2
-    #   env:
-    #     PRIVATE_KEY: ${{ secrets.KAT_EC2_SSH_PRIVATE_KEY }}
-    #     HOST: 44.203.64.5
-    #     USER: ubuntu
-    #   run: |
-    #     #ssh -o StrictHostKeyChecking=no -i <(echo "$PRIVATE_KEY") $USER@$HOST "rm -f /var/www/html/index.html"
-    #     scp -o StrictHostKeyChecking=no -i <(echo "$PRIVATE_KEY") -r * $USER@$HOST:/var/www/html/
-    # - name: copy file via ssh key
-    #   uses: appleboy/scp-action@v0.1.4
-    #   with:
-    #     host: 44.203.64.5
-    #     username: ubuntu
-    #     port: 22
-    #     key: ${{ secrets.KAT_EC2_SSH_PRIVATE_KEY }}
-    #     source: "index.php"
-    #     target: /var/www/html/
+        pwd
+        ls -l
