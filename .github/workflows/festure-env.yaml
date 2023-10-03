@@ -15,6 +15,8 @@ jobs:
       env:
         KAT_EC2_SSH_PRIVATE_KEY: ${{ secrets.KAT_EC2_SSH_PRIVATE_KEY }}
       run: |
+        mkdir -p /home/runner/.ssh
+        touch /home/runner/.ssh/known_hosts
         echo "$KAT_EC2_SSH_PRIVATE_KEY" > kat.pem
         chmod 600 kat.pem
         ssh-keyscan $HOST >> ~/.ssh/known_hosts
