@@ -18,6 +18,5 @@ jobs:
         HOST: 44.203.64.5
         USER: ubuntu
       run: |
-        ssh-keyscan $HOST >> ~/.ssh/known_hosts
         ssh -i <(echo "$PRIVATE_KEY") $USER@$HOST "rm -f /var/www/html/index.html"  # Remove index.html
         scp -i <(echo "$PRIVATE_KEY") -r * $USER@$HOST:/var/www/html/
