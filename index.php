@@ -1,3 +1,4 @@
 <?php
 // index.php
-echo "Hello, World from GitHub Actions!";
+echo "Hello, World from Devops!";
+echo "Hello, curly people!";
