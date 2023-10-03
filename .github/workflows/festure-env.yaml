@@ -20,3 +20,12 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no -i <(echo "$PRIVATE_KEY") $USER@$HOST "rm -f /var/www/html/index.html"
         scp -o StrictHostKeyChecking=no -i <(echo "$PRIVATE_KEY") -r * $USER@$HOST:/var/www/html/
+    - name: copy file via ssh key
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        host: 44.203.64.5
+        username: ubuntu
+        port: 22
+        key: ${{ secrets.KAT_EC2_SSH_PRIVATE_KEY }}
+        source: "index.php"
+        target: /var/www/html/
