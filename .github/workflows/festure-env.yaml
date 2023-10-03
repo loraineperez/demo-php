@@ -19,7 +19,7 @@ jobs:
         touch /home/runner/.ssh/known_hosts
         echo "$KAT_EC2_SSH_PRIVATE_KEY" > kat.pem
         chmod 600 kat.pem
-        ssh-keyscan $HOST >> ~/.ssh/known_hosts
+        ssh-keyscan 44.203.64.5 >> ~/.ssh/known_hosts
     - name: rsync deployments
       uses: burnett01/rsync-deployments@5.1
       with:
