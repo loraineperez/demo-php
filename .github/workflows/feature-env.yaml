@@ -32,3 +32,12 @@ jobs:
         pwd
         ls -l
         sudo cp index.php /var/www/html/index.php
+  email-notification:
+    runs-on: ubuntu-latest
+    needs: build-artifact
+    steps:
+    # - name: Checkout code
+    #   uses: actions/checkout@v3
+    - name: Sending email notification
+      run: |
+        echo "send an email notification"
