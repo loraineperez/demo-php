@@ -6,7 +6,20 @@ on:
       - feature*
 
 jobs:
-  deploy:
+  build-artifact:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Create and setup permissions for SSH key
+      env:
+        KAT_EC2_SSH_PRIVATE_KEY: ${{ secrets.KAT_EC2_SSH_PRIVATE_KEY }}
+      run: |
+        echo "printing present working directory"
+        pwd
+        echo "listing files in the directory"
+        ls -l
+  deploy-artifact:
     runs-on: self-hosted
     steps:
     - name: Checkout code
