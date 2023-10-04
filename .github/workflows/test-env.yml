@@ -20,7 +20,8 @@ jobs:
         echo "listing files in the directory"
         ls -l
   deploy-artifact:
-    runs-on: self-hosted,test
+#    runs-on: self-hosted,test
+    runs-on: [self-hosted,test]
     needs: build-artifact
     steps:
     - name: Checkout code
