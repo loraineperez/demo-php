@@ -21,6 +21,7 @@ jobs:
         ls -l
   deploy-artifact:
     runs-on: self-hosted
+    needs: build-artifact
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
