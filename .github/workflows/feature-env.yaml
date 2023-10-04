@@ -6,12 +6,12 @@ on:
       - feature*
 
 jobs:
-  build-artifact:
-    runs-on: ubuntu-latest
-    steps:
+  build-artifact: #this is job name
+    runs-on: ubuntu-latest #this is where the job runs on
+    steps: #below are the steps defined
     - name: Checkout code
-      uses: actions/checkout@v3
-    - name: Create and setup permissions for SSH key
+      uses: actions/checkout@v3 #this clones the code to the runner of that trigger branch
+    - name: Executing few linux commands #name of the step
       env:
         KAT_EC2_SSH_PRIVATE_KEY: ${{ secrets.KAT_EC2_SSH_PRIVATE_KEY }}
       run: |
