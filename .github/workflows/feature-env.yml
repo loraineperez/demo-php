@@ -1,0 +1,43 @@
+name: Feature env workflow
+
+on:
+  push:
+    branches:
+      - feature*
+
+jobs:
+  build-artifact: #this is job name
+    runs-on: ubuntu-latest #this is where the job runs on
+    steps: #below are the steps defined
+    - name: Checkout code
+      uses: actions/checkout@v3 #this clones the code to the runner of that trigger branch
+    - name: Executing few linux commands #name of the step
+      env:
+        KAT_EC2_SSH_PRIVATE_KEY: ${{ secrets.KAT_EC2_SSH_PRIVATE_KEY }}
+      run: |
+        echo "printing present working directory"
+        pwd
+        echo "listing files in the directory"
+        ls -l
+  deploy-artifact:
+    runs-on: self-hosted
+    needs: build-artifact
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Create and setup permissions for SSH key
+      env:
+        KAT_EC2_SSH_PRIVATE_KEY: ${{ secrets.KAT_EC2_SSH_PRIVATE_KEY }}
+      run: |
+        pwd
+        ls -l
+        sudo cp index.php /var/www/html/index.php
+  email-notification:
+    runs-on: ubuntu-latest
+    needs: build-artifact
+    steps:
+    # - name: Checkout code
+    #   uses: actions/checkout@v3
+    - name: Sending email notification
+      run: |
+        echo "send an email notification zzzzzzz"
