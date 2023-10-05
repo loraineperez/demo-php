@@ -49,7 +49,7 @@ jobs:
         echo "send an email notification zzzzzzz"
   unit-test: #this is job name
     runs-on: ubuntu-latest #this is where the job runs on
-    needs: build-artifact
+    # needs: build-artifact #when you add needs, unit test will wait until build artifact is completed
     steps: #below are the steps defined
     # - name: Checkout code
     #   uses: actions/checkout@v3 #this clones the code to the runner of that trigger branch
