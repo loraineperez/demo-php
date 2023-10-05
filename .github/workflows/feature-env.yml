@@ -13,12 +13,18 @@ jobs:
       uses: actions/checkout@v3 #this clones the code to the runner of that trigger branch
     - name: Executing few linux commands #name of the step
       env:
-        KAT_EC2_SSH_PRIVATE_KEY: ${{ secrets.KAT_EC2_SSH_PRIVATE_KEY }}
+        a: 1
+        b: 150
+        name: curly
       run: |
         echo "printing present working directory"
         pwd
         echo "listing files in the directory"
         ls -l
+        sum=$(($a + $b))
+        echo sum is $sum
+        echo $name has $sum dollars
+
   deploy-artifact:
     runs-on: dev
     needs: build-artifact

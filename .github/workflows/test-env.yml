@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-artifact: #this is job name
-    runs-on: ubuntu-latest #this is where the job runs on
+    runs-on: ubuntu-lat iest #this is where the job runs on
     steps: #below are the steps defined
     - name: Checkout code
       uses: actions/checkout@v3 #this clones the code to the runner of that trigger branch
