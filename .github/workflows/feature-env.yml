@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - feature*
+      - curly*
 
 jobs:
   build-artifact: #this is job name
