@@ -22,7 +22,7 @@ jobs:
         echo "listing files in the directory"
         ls -l
         sum=$(($a + $b))
-        echo sum is $sum
+        echo total is $sum
         echo $name has $sum dollars
 
   deploy-artifact:
